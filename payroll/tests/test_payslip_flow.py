@@ -32,7 +32,7 @@ class TestPayslipFlow(TestPayslipBase):
             "active_id": self.ref("payroll.hr_payslip_menu"),
         }
         # I click on 'Compute Sheet' button on payslip
-        richard_payslip.with_context(context).compute_sheet()
+        richard_payslip.with_context(**context).compute_sheet()
 
         # Then I click on the 'Confirm' button on payslip
         richard_payslip.action_payslip_done()

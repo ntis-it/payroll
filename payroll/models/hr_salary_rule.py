@@ -174,7 +174,7 @@ class HrSalaryRule(models.Model):
                 )
             except Exception:
                 raise UserError(
-                    _("Wrong quantity defined for salary rule %s (%s).")
+                    _("%((Wrong quantity defined for salary rule )s )s.")
                     % (self.name, self.code)
                 )
         elif self.amount_select == "percentage":
@@ -188,7 +188,7 @@ class HrSalaryRule(models.Model):
                 raise UserError(
                     _(
                         "Wrong percentage base or quantity defined for salary "
-                        "rule %s (%s)."
+                        "%(rule )s %()s."
                     )
                     % (self.name, self.code)
                 )
@@ -205,11 +205,11 @@ class HrSalaryRule(models.Model):
             except Exception as ex:
                 raise UserError(
                     _(
-                        """
-Wrong python code defined for salary rule %s (%s).
+                        """%(((
+Wrong python code defined for salary rule )s )s.
 Here is the error received:
 
-%s
+)s
 """
                     )
                     % (self.name, self.code, repr(ex))
@@ -234,7 +234,7 @@ Here is the error received:
                 )
             except Exception:
                 raise UserError(
-                    _("Wrong range condition defined for salary rule %s (%s).")
+                    _("%((Wrong range condition defined for salary rule )s )s.")
                     % (self.name, self.code)
                 )
         else:  # python code
@@ -244,11 +244,11 @@ Here is the error received:
             except Exception as ex:
                 raise UserError(
                     _(
-                        """
-Wrong python condition defined for salary rule %s (%s).
+                        """%(((
+Wrong python condition defined for salary rule )s )s.
 Here is the error received:
 
-%s
+)s
 """
                     )
                     % (self.name, self.code, repr(ex))

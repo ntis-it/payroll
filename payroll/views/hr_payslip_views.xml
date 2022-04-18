@@ -7,7 +7,6 @@
             <tree
                 decoration-info="state in ('confirm','hr_check','accont_check')"
                 decoration-muted="state == 'cancel'"
-                string="Payslips"
                 multi_edit="1"
                 sample="1"
             >
@@ -162,8 +161,8 @@
                     <notebook>
                         <page string="Worked Days &amp; Inputs">
                             <separator string="Worked Days" />
-                            <field name="worked_days_line_ids">
-                                <tree string="Worked Days" editable="bottom">
+                            <field name="worked_days_line_ids" string="Worked Days">
+                                <tree editable="bottom">
                                     <field name="name" />
                                     <field name="code" />
                                     <field
@@ -186,8 +185,13 @@
                                 </form>
                             </field>
                             <separator string="Other Inputs" />
-                            <field name="input_line_ids" colspan="4" nolabel="1">
-                                <tree string="Input Data" editable="bottom">
+                            <field
+                                name="input_line_ids"
+                                colspan="4"
+                                nolabel="1"
+                                string="Input Data"
+                            >
+                                <tree editable="bottom">
                                     <field name="name" />
                                     <field name="code" />
                                     <field name="amount" />
@@ -206,12 +210,13 @@
                             </field>
                         </page>
                         <page string="Salary Computation">
-                            <field name="line_ids" colspan="4" nolabel="1">
-                                <tree
-                                    string="Salary Structure"
-                                    editable="bottom"
-                                    decoration-info="total == 0"
-                                >
+                            <field
+                                name="line_ids"
+                                colspan="4"
+                                nolabel="1"
+                                string="Salary Structure"
+                            >
+                                <tree editable="bottom" decoration-info="total == 0">
                                     <field name="name" />
                                     <field name="code" />
                                     <field name="category_id" />
@@ -240,13 +245,11 @@
                         <page string="Details By Salary Rule Category">
                             <field
                                 name="details_by_salary_rule_category"
+                                string="Payslip Lines"
                                 context="{'group_by':'category_id'}"
                                 domain="[('appears_on_payslip', '=', True)]"
                             >
-                                <tree
-                                    string="Payslip Lines"
-                                    decoration-info="total == 0"
-                                >
+                                <tree decoration-info="total == 0">
                                     <field name="category_id" />
                                     <field name="name" />
                                     <field name="code" />
