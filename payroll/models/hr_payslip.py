@@ -122,7 +122,6 @@ class HrPayslip(models.Model):
         states={"draft": [("readonly", False)]},
     )
     date_from = fields.Date(
-        string="Date From",
         readonly=True,
         required=True,
         default=lambda self: fields.Date.to_string(date.today().replace(day=1)),
@@ -130,7 +129,6 @@ class HrPayslip(models.Model):
         tracking=1,
     )
     date_to = fields.Date(
-        string="Date To",
         readonly=True,
         required=True,
         default=lambda self: fields.Date.to_string(
@@ -210,7 +208,6 @@ class HrPayslip(models.Model):
         string="Details by Salary Rule Category",
     )
     credit_note = fields.Boolean(
-        string="Credit Note",
         readonly=True,
         states={"draft": [("readonly", False)]},
         help="Indicates this payslip has a refund of another",
@@ -225,6 +222,7 @@ class HrPayslip(models.Model):
     payslip_count = fields.Integer(
         compute="_compute_payslip_count", string="Payslip Computation Details"
     )
+    category_id = fields.Many2one("hr.salary.rule.category", string="Category")
 
     def _compute_details_by_salary_rule_category(self):
         for payslip in self:
@@ -550,7 +548,7 @@ class HrPayslip(models.Model):
         locale = self.env.context.get("lang") or "en_US"
         res["value"].update(
             {
-                "name": _("Salary Slip of %s for %s")
+                "name": _("%((Salary Slip of )s for )s")
                 % (
                     employee.name,
                     tools.ustr(
@@ -610,7 +608,7 @@ class HrPayslip(models.Model):
 
         ttyme = datetime.combine(date_from, time.min)
         locale = self.env.context.get("lang") or "en_US"
-        self.name = _("Salary Slip of %s for %s") % (
+        self.name = _("%((Salary Slip of )s for )s") % (
             employee.name,
             tools.ustr(
                 babel.dates.format_date(date=ttyme, format="MMMM-y", locale=locale)

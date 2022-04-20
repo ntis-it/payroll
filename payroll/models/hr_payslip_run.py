@@ -46,7 +46,6 @@ class HrPayslipRun(models.Model):
         + relativedelta(months=+1, day=1, days=-1),
     )
     credit_note = fields.Boolean(
-        string="Credit Note",
         readonly=True,
         states={"draft": [("readonly", False)]},
         help="If its checked, indicates that all payslips generated from here "

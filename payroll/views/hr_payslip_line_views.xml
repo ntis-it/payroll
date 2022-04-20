@@ -4,11 +4,7 @@
         <field name="name">hr.payslip.line.tree</field>
         <field name="model">hr.payslip.line</field>
         <field name="arch" type="xml">
-            <tree
-                string="Salary Structure"
-                editable="bottom"
-                decoration-info="total == 0"
-            >
+            <tree editable="bottom" decoration-info="total == 0">
                 <field name="category_id" />
                 <field name="employee_id" invisible="1" />
                 <field name="sequence" />
